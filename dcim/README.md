@@ -20,6 +20,8 @@ Vrednosti se mogu promeniti promenljivama `DB_URL`, `DB_USERNAME` i `DB_PASSWORD
 
 Flyway automatski kreira šemu. Hibernate je podešen na `validate`, pa ne menja bazu samostalno.
 
+Spring Boot 4 zahteva `spring-boot-starter-flyway` za aktiviranje Flyway autokonfiguracije; `flyway-mysql` obezbeđuje podršku za MySQL bazu.
+
 ## Sledeće faze
 
 1. REST DTO modeli, servisi i CRUD endpoint-i.

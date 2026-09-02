@@ -2,6 +2,7 @@ target/
 .m2/
 .tooling/
 .npm-cache/
+.docker-config/
 .idea/
 *.iml
 .vscode/
