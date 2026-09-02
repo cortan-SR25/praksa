@@ -1,0 +1,8 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink,RouterLinkActive,RouterOutlet } from '@angular/router';
+import { AuthService } from './core/auth.service';
+
+@Component({selector:'app-root',standalone:true,imports:[CommonModule,RouterLink,RouterLinkActive,RouterOutlet],template:`
+<ng-container *ngIf="auth.authenticated(); else publicPage"><aside><div class="brand"><span>DC</span><div><b>DCIM</b><small>Infrastructure Portal</small></div></div><nav><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Pregled</a><a routerLink="/devices" routerLinkActive="active">Uređaji</a><a routerLink="/licenses" routerLinkActive="active">Licence</a><a *ngIf="auth.isAdmin()" routerLink="/software" routerLinkActive="active">Softver</a><a *ngIf="auth.isAdmin()" routerLink="/organization" routerLinkActive="active">Organizacija</a><a *ngIf="auth.isAdmin()" routerLink="/users" routerLinkActive="active">Korisnici</a></nav><div class="profile"><div class="avatar">{{auth.session()?.firstName?.charAt(0)}}{{auth.session()?.lastName?.charAt(0)}}</div><div><b>{{auth.session()?.firstName}} {{auth.session()?.lastName}}</b><small>{{auth.session()?.role}}</small></div><button (click)="auth.logout()" title="Odjava">↪</button></div></aside><main><header><div><small>DATA CENTER MANAGEMENT</small><h1>Kontrolni centar</h1></div><span class="online">● Sistem aktivan</span></header><section class="content"><router-outlet></router-outlet></section></main></ng-container><ng-template #publicPage><router-outlet></router-outlet></ng-template>`})
+export class AppComponent { constructor(public auth:AuthService){} }
